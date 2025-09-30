@@ -1,0 +1,22 @@
+﻿{% extends "base.html" %}
+{% block title %}Vote · {{ question.question_text }}{% endblock %}
+{% block content %}
+  <div class="card">
+    <h2>{{ question.question_text }}</h2>
+    <p class="meta">Published: {{ question.pub_date|date:"M j, Y · H:i" }}</p>
+    {% if error_message %}<p class="small" style="color:#ff9b9b;"><strong>{{ error_message }}</strong></p>{% endif %}
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+      {% csrf_token %}
+      {% for choice in question.choices.all %}
+        <label class="radio">
+          <input type="radio" name="choice" value="{{ choice.id }}">
+          <span>{{ choice.choice_text }}</span>
+        </label>
+      {% endfor %}
+      <div style="margin-top:14px;">
+        <button class="btn primary" type="submit">Submit vote</button>
+        <a class="btn" href="{% url 'polls:index' %}">Back</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+﻿{% extends "base.html" %}
+{% block title %}Polls · Home{% endblock %}
+{% block content %}
+  <div class="card">
+    <h2>Latest Polls</h2>
+    <p class="small">Vote and see what others think in real time.</p>
+    {% if latest_question_list %}
+      <ul class="list">
+        {% for question in latest_question_list %}
+          <li>
+            <span>{{ question.question_text }}</span>
+            <a class="btn link" href="{% url 'polls:detail' question.id %}">Vote</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="center small">No polls are available.</p>
+    {% endif %}
+  </div>
+{% endblock %}
