@@ -75,9 +75,3 @@ python manage.py runserver
 - Vote in real time  
 - View poll results instantly  
 - Styled frontend with static CSS  
-
----
-
-## 📜 License
-
-This project is for **educational/demo purposes** only.  
