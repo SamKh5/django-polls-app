@@ -1,5 +1,5 @@
 branch-defaults:
-  default:
+  main:
     environment: swe1-env
     group_suffix: null
 global:
