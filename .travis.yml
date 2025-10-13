@@ -19,7 +19,7 @@ script:
   - coverage run manage.py test
 
 after_success:
-  - coveralls
+  - coveralls --service=travis-pro
 
 jobs:
   include:
