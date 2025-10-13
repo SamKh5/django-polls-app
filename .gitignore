@@ -1,5 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
 
-# Elastic Beanstalk Files
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Django static/media
+/static/
+/staticfiles/
+/media/
+
+# Collected static files
+*.js.map
+
+# Logs
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+
+# Elastic Beanstalk
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# AWS credentials
+.aws/
