@@ -1,3 +1,6 @@
+[![Travis Build Status](https://app.travis-ci.com/SamKh5/django-polls-app.svg?branch=main)](https://app.travis-ci.com/github/SamKh5/django-polls-app)
+[![Coverage Status](https://coveralls.io/repos/github/SamKh5/django-polls-app/badge.svg?branch=main)](https://coveralls.io/github/SamKh5/django-polls-app?branch=main)
+
 # Django Polls App 🚀
 
 A simple Django polls application deployed on **AWS Elastic Beanstalk**.  
