@@ -1,0 +1,36 @@
+language: python
+python: ["3.13"]
+
+cache: pip
+
+install:
+  - pip install --upgrade pip setuptools wheel
+  - pip install -r requirements.txt
+  - pip install black flake8 coverage coveralls awsebcli
+
+before_script:
+  - python manage.py collectstatic --noinput
+  - python manage.py migrate --noinput
+
+stages:
+  - name: test
+  - name: deploy
+    if: branch = main AND type = push
+
+jobs:
+  include:
+    - stage: test
+      name: "Lint & tests"
+      script:
+        - black --check .
+        - flake8 .
+        - coverage run manage.py test
+
+    - stage: deploy
+      name: "EB deploy"
+      script:
+        - eb --version
+        - eb deploy --staged
+
+after_success:
+  - coveralls --service=travis-pro
