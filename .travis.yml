@@ -1,6 +1,5 @@
 language: python
-python:
-  - "3.13"
+python: ["3.13"]
 
 cache: pip
 
@@ -13,20 +12,25 @@ before_script:
   - python manage.py collectstatic --noinput
   - python manage.py migrate --noinput
 
-script:
-  - black --check .
-  - flake8 .
-  - coverage run manage.py test
-
-after_success:
-  - coveralls --service=travis-pro
+stages:
+  - name: test
+  - name: deploy
+    if: branch = main AND type = push
 
 jobs:
   include:
+    - stage: test
+      name: "Lint & tests"
+      script:
+        - black --check .
+        - flake8 .
+        - coverage run manage.py test
+
     - stage: deploy
-      if: branch = main AND type = push
+      name: "EB deploy"
       script:
         - eb --version
-        - eb status
-        - cat .elasticbeanstalk/config.yml
         - eb deploy --staged
+
+after_success:
+  - coveralls --service=travis-pro
