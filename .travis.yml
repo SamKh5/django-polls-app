@@ -30,7 +30,7 @@ jobs:
       name: "EB deploy"
       script:
         - eb --version
-        - eb deploy --staged
+        - eb deploy swe1-env --staged
 
 after_success:
   - coveralls --service=travis-pro
