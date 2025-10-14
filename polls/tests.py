@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 
+
 class PollsSmokeTests(TestCase):
     def test_index_ok(self):
         c = Client()
